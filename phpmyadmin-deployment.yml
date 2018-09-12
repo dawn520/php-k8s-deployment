@@ -18,6 +18,9 @@ spec:
                 - name: phpmyadmin
                   image: harbor.yourdomain.com/service/phpmyadmin:0.0.1
                   imagePullPolicy: Always
+                  env:
+                  - name: PMA_ARBITRARY
+                    value: "1"
                   ports:
                       - containerPort: 80
             imagePullSecrets:
