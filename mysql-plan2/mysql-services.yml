@@ -9,11 +9,9 @@ spec:
   ports:
   - name: mysql
     port: 3306
-#  clusterIP: None
+  clusterIP: None
   selector:
     app: mysql
-  externalIPs: 
-      - 192.168.136.102 
 ---
 # Client service for connecting to any MySQL instance for reads.
 # For writes, you must instead connect to the master: mysql-0.mysql.
@@ -29,5 +27,3 @@ spec:
     port: 3306
   selector:
     app: mysql
-  externalIPs: 
-      - 192.168.136.101  
