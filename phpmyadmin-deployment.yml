@@ -1,37 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: nginx-deployment
+    name: phpmyadmin-deployment
 spec:
     selector:
         matchLabels:
             app: api
-            name: nginx
+            name: phpmyadmin
     replicas: 3
     template:
         metadata:
             labels:
                 app: api
-                name: nginx
+                name: phpmyadmin
         spec:
             containers:
-                - name: nginx
-                  image: habor.zcx/service/nginx:0.0.1
+                - name: phpmyadmin
+                  image: harbor.yourdomain.com/service/phpmyadmin:0.0.1
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 80
-                      - containerPort: 443
-                  volumeMounts:
-                      - name: nginx-config
-                        mountPath: /etc/nginx/sites-available
-                      - name: web-root
-                        mountPath: /var/www
             imagePullSecrets:
                   - name: harborkey1
-            volumes:
-                - name: nginx-config
-                  persistentVolumeClaim:
-                    claimName: nginx-nfs-pvc
-                - name: web-root
-                  persistentVolumeClaim:
-                    claimName: code-nfs-pvc
