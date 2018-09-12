@@ -31,7 +31,8 @@ spec:
     matchLabels:
       app: api
       pv: mysql-0-nfs-pv
-
+      
+---
 # mysql-1 PersistentVolume
 apiVersion: v1
 kind: PersistentVolume
@@ -66,6 +67,7 @@ spec:
       app: api
       pv: mysql-1-nfs-pv
 
+---
 # mysql-2 PersistentVolume
 apiVersion: v1
 kind: PersistentVolume
