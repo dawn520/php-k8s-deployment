@@ -39,7 +39,8 @@ spec:
         - name: config-map
           mountPath: /mnt/config-map
       - name: clone-mysql
-        image: gcr.io/google-samples/xtrabackup:1.0
+        image: harbor.youdomain.com/service/xtrabackup:0.0.1
+        imagePullPolicy: Always
         command:
         - bash
         - "-c"
@@ -94,7 +95,8 @@ spec:
           periodSeconds: 2
           timeoutSeconds: 1
       - name: xtrabackup
-        image: gcr.io/google-samples/xtrabackup:1.0
+        image: harbor.youdomain.com/service/xtrabackup:0.0.1
+        imagePullPolicy: Always
         ports:
         - name: xtrabackup
           containerPort: 3307
@@ -147,6 +149,8 @@ spec:
           requests:
             cpu: 100m
             memory: 100Mi
+      imagePullSecrets:
+      - name: harborkey1
       volumes:
       - name: conf
         emptyDir: {}
