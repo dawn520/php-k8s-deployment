@@ -68,8 +68,6 @@ spec:
         env:
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
           value: "true"
-        - name: MYSQL_ROOT_PASSWORD
-          value: "xixi2005"
         ports:
         - name: mysql
           containerPort: 3306
@@ -92,7 +90,7 @@ spec:
         readinessProbe:
           exec:
             # Check we can execute queries over TCP (skip-networking is off).
-            command: ["mysql", "-h", "127.0.0.1", "-u", "root", "-pxixi2005", "-e", "SELECT 1"]
+            command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
           initialDelaySeconds: 5
           periodSeconds: 2
           timeoutSeconds: 1
@@ -125,15 +123,15 @@ spec:
           # Check if we need to complete a clone by starting replication.
           if [[ -f change_master_to.sql.in ]]; then
             echo "Waiting for mysqld to be ready (accepting connections)"
-            until mysql -h 127.0.0.1 -u root -pxixi2005 -e "SELECT 1"; do sleep 1; done
+            until mysql -h 127.0.0.1 -e "SELECT 1"; do sleep 1; done
             echo "Initializing replication from clone position"
             # In case of container restart, attempt this at-most-once.
             mv change_master_to.sql.in change_master_to.sql.orig
-            mysql -h 127.0.0.1 -u root -pxixi2005 <<EOF
+            mysql -h 127.0.0.1 <<EOF
           $(<change_master_to.sql.orig),
             MASTER_HOST='mysql-0.mysql',
             MASTER_USER='root',
-            MASTER_PASSWORD='xixi2005',
+            MASTER_PASSWORD='',
             MASTER_CONNECT_RETRY=10;
           START SLAVE;
           EOF
