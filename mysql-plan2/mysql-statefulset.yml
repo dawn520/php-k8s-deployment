@@ -67,9 +67,7 @@ spec:
         image: mysql:5.7
         env:
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
-          value: "1"
-        - name: MYSQL_ROOT_PASSWORD
-          value: "test"
+          value: "true"
         ports:
         - name: mysql
           containerPort: 3306
@@ -92,7 +90,7 @@ spec:
         readinessProbe:
           exec:
             # Check we can execute queries over TCP (skip-networking is off).
-            command: ["mysql", "-h", "127.0.0.1","-ptest", "-e", "SELECT 1"]
+            command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
           initialDelaySeconds: 5
           periodSeconds: 2
           timeoutSeconds: 1
@@ -133,7 +131,7 @@ spec:
           $(<change_master_to.sql.orig),
             MASTER_HOST='mysql-0.mysql',
             MASTER_USER='root',
-            MASTER_PASSWORD='test',
+            MASTER_PASSWORD='',
             MASTER_CONNECT_RETRY=10;
           START SLAVE;
           EOF
