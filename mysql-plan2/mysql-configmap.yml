@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+data:
+  master.cnf: |
+    # Apply this config only on the master.
+    [mysqld]
+    sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    character-set-server=utf8
+    #开启慢日志
+    slow_query_log = ON
+    slow_query_log_file = /var/lib/mysql/slow-query-log.log
+    long_query_time = 1
+    log-bin
+    log_bin_trust_function_creators=1
+    lower_case_table_names=1
+  slave.cnf: |
+    # Apply this config only on slaves.
+    [mysqld]
+    sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    character-set-server=utf8
+    #开启慢日志
+    slow_query_log = ON
+    slow_query_log_file = /var/lib/mysql/slow-query-log.log
+    long_query_time = 1
+    super-read-only
+    log_bin_trust_function_creators=1
