@@ -1,0 +1,101 @@
+# mysql-0 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-0-nfs-pv
+  labels:
+    app: api
+    pv: mysql-0-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mysql-0
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-0-nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mysql-0-nfs-pv
+
+# mysql-1 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-1-nfs-pv
+  labels:
+    app: api
+    pv: mysql-1-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mysql-1
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-1-nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mysql-1-nfs-pv
+
+# mysql-2 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-2-nfs-pv
+  labels:
+    app: api
+    pv: mysql-2-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mysql-2
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-2-nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mysql-2-nfs-pv
