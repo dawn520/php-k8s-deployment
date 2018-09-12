@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-0-nfs-pvc
+  name: data-mysql-0
 spec:
   accessModes:
     - ReadWriteOnce
@@ -31,7 +31,7 @@ spec:
     matchLabels:
       app: api
       pv: mysql-0-nfs-pv
-      
+
 ---
 # mysql-1 PersistentVolume
 apiVersion: v1
@@ -55,7 +55,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-1-nfs-pvc
+  name: data-mysql-1
 spec:
   accessModes:
     - ReadWriteOnce
@@ -90,7 +90,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-2-nfs-pvc
+  name: data-mysql-2
 spec:
   accessModes:
     - ReadWriteOnce
