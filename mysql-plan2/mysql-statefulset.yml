@@ -39,7 +39,7 @@ spec:
         - name: config-map
           mountPath: /mnt/config-map
       - name: clone-mysql
-        image: harbor.youdomain.com/service/xtrabackup:0.0.1
+        image: harbor.yourdomain.com/service/xtrabackup:0.0.1
         imagePullPolicy: Always
         command:
         - bash
@@ -95,7 +95,7 @@ spec:
           periodSeconds: 2
           timeoutSeconds: 1
       - name: xtrabackup
-        image: harbor.youdomain.com/service/xtrabackup:0.0.1
+        image: harbor.yourdomain.com/service/xtrabackup:0.0.1
         imagePullPolicy: Always
         ports:
         - name: xtrabackup
