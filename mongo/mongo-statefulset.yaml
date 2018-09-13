@@ -8,7 +8,7 @@ spec:
       app: mongo
       environment: product
   serviceName: "mongo"
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
