@@ -11,19 +11,23 @@ spec:
     targetPort: 27017
   clusterIP: None
   selector:
-    role: mongo
+    app: mongo
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
 spec:
+  selector:
+    matchLabels:
+      app: mongo
+      environment: product
   serviceName: "mongo"
   replicas: 3
   template:
     metadata:
       labels:
-        role: mongo
+        app: mongo
         environment: product
     spec:
       terminationGracePeriodSeconds: 10
@@ -60,7 +64,7 @@ spec:
           image: cvallance/mongo-k8s-sidecar
           env:
             - name: MONGO_SIDECAR_POD_LABELS
-              value: "role=mongo,environment=product"
+              value: "app=mongo,environment=product"
             - name: KUBERNETES_MONGO_SERVICE_NAME
               value: mongo
             - name: MONGODB_USERNAME
