@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: mongo
-          image: harbor.yourdomain.com/service/mongo:0.0.3
+          image: harbor.yourdomain.com/service/mongo:0.0.4
           imagePullPolicy: Always
           args:
             - mongod
