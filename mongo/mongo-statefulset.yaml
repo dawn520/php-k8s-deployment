@@ -41,7 +41,7 @@ spec:
             - containerPort: 27017
           volumeMounts:
             - name: data
-              mountPath: /mgo-data/db
+              mountPath: /data/db
               subPath: mongo
             - mountPath: /docker-entrypoint-initdb.d
               name: mongo-init-js
