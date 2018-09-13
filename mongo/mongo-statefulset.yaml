@@ -23,7 +23,7 @@ spec:
       app: mongo
       environment: product
   serviceName: "mongo"
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
