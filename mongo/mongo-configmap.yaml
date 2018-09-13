@@ -8,7 +8,7 @@ data:
     var pwd = "123456";
     var mgo = new Mongo('127.0.0.1:27017');
     var admindb = mgo.getDB("admin");
-    admindb.auth("admin", "17duu@2018%");
+    admindb.auth("admin", "091317duu2018");
 
     for (i=0; i < users.length; i++) {
         user = users[i];

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: adminmongo-deployment
+spec:
+    selector:
+        matchLabels:
+            app: api
+            name: adminmongo
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: api
+                name: adminmongo
+        spec:
+            containers:
+                - name: adminmongo
+                  image: mrvautin/adminmongo:latest
+                  ports:
+                      - containerPort: 1234

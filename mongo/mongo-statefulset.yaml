@@ -36,7 +36,7 @@ spec:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: admin
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: 17duu@2018%
+              value: 091317duu2018
           ports:
             - containerPort: 27017
           volumeMounts:
@@ -55,7 +55,7 @@ spec:
             - name: MONGODB_USERNAME
               value: admin
             - name: MONGODB_PASSWORD
-              value: 17duu@2018%
+              value: 091317duu2018
             - name: MONGODB_DATABASE
               value: admin
       imagePullSecrets:
