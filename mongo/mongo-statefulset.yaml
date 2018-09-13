@@ -34,14 +34,14 @@ spec:
             - /data/config/mongodb-keyfile
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: admin
+              value: "admin"
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: 091317duu2018
+              value: "091317duu2018"
           ports:
             - containerPort: 27017
           volumeMounts:
             - name: data
-              mountPath: /data/db
+              mountPath: /mgo-data/db
               subPath: mongo
             - mountPath: /docker-entrypoint-initdb.d
               name: mongo-init-js
@@ -51,13 +51,13 @@ spec:
             - name: MONGO_SIDECAR_POD_LABELS
               value: "app=mongo,environment=product"
             - name: KUBERNETES_MONGO_SERVICE_NAME
-              value: mongo
+              value: "mongo"
             - name: MONGODB_USERNAME
-              value: admin
+              value: "admin"
             - name: MONGODB_PASSWORD
-              value: 091317duu2018
+              value: "091317duu2018"
             - name: MONGODB_DATABASE
-              value: admin
+              value: "admin"
       imagePullSecrets:
       - name: harborkey1
       volumes:
