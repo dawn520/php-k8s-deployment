@@ -1,0 +1,103 @@
+# mongo-0 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-0-nfs-pv
+  labels:
+    app: api
+    pv: mongo-0-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mongo-0
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-mongo-0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mongo-0-nfs-pv
+
+---
+# mongo-1 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-1-nfs-pv
+  labels:
+    app: api
+    pv: mongo-1-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mongo-1
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-mongo-1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mongo-1-nfs-pv
+
+---
+# mongo-2 PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-2-nfs-pv
+  labels:
+    app: api
+    pv: mongo-2-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /k8sdata/data/mongo-2
+    server: 192.168.137.100
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-mongo-2
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: api
+      pv: mongo-2-nfs-pv

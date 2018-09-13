@@ -1,0 +1,113 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    name: mongo
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  clusterIP: None
+  selector:
+    role: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  serviceName: "mongo"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mongo
+        environment: product
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongo
+          image: harbor.yourdomain.com/service/mongo:0.0.1
+          imagePullPolicy: Always
+          args:
+            - mongod
+            - "--replSet"
+            - rs0
+            - "--bind_ip"
+            - 0.0.0.0
+            - "--smallfiles"
+            - "--noprealloc"
+            - --clusterAuthMode
+            - keyFile
+            - --keyFile
+            - /data/config/mongodb-keyfile
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: admin
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: 17duu@2018%
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: data
+              mountPath: /data/db
+              subPath: mongo
+            - mountPath: /docker-entrypoint-initdb.d
+              name: mongo-init-js
+        - name: mongo-sidecar
+          image: cvallance/mongo-k8s-sidecar
+          env:
+            - name: MONGO_SIDECAR_POD_LABELS
+              value: "role=mongo,environment=product"
+            - name: KUBERNETES_MONGO_SERVICE_NAME
+              value: mongo
+            - name: MONGODB_USERNAME
+              value: admin
+            - name: MONGODB_PASSWORD
+              value: 17duu@2018%
+            - name: MONGODB_DATABASE
+              value: admin
+      imagePullSecrets:
+      - name: harborkey1
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: mongo-init.js
+            path: mongo-init.js
+          name: mongo-init-js
+        name: mongo-init-js
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-init-js
+data:
+  mongo-init.js: |
+    var users = ["dev", "test", "product"];
+    var pwd = "123456";
+    var mgo = new Mongo('127.0.0.1:27017');
+    var admindb = mgo.getDB("admin");
+    admindb.auth("admin", "17duu@2018%");
+
+    for (i=0; i < users.length; i++) {
+        user = users[i];
+        db = admindb.getSiblingDB(user);
+        u = db.getUser(user);
+        if (u === null) {
+            print("user is not found, add this user");
+            db.createUser({'user': user, 'pwd': pwd, roles: [ { role: "dbAdmin", db: user } ]});
+        } else {
+            print("user is found, need no action");
+        }
+    }
