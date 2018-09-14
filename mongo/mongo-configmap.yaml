@@ -21,3 +21,5 @@ data:
             print("user is found, need no action");
         }
     }
+  mongorc.js: |
+    rs.slaveOk();

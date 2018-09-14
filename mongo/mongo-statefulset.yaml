@@ -8,7 +8,7 @@ spec:
       app: mongo
       environment: product
   serviceName: "mongo"
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -45,6 +45,8 @@ spec:
               subPath: mongo
             - mountPath: /docker-entrypoint-initdb.d
               name: mongo-init-js
+            - mountPath: /etc/mongorc.js
+              name: mongorc-js
         - name: mongo-sidecar
           image: cvallance/mongo-k8s-sidecar
           env:
@@ -68,6 +70,13 @@ spec:
             path: mongo-init.js
           name: mongo-init-js
         name: mongo-init-js
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: mongorc.js
+            path: mongorc.js
+          name: mongorc.js
+        name: mongorc-js
   volumeClaimTemplates:
   - metadata:
       name: data
