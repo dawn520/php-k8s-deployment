@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
                 - name: nginx
-                  image: habor.zcx/service/nginx:0.0.1
+                  image: harbor.yourdomain.com/service/nginx:0.0.1
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 80
