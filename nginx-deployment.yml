@@ -31,7 +31,7 @@ spec:
             volumes:
                 - name: nginx-config
                   configMap:
-                    name: php-worker
+                    name: nginx
                 - name: web-root
                   persistentVolumeClaim:
                     claimName: code-nfs-pvc
