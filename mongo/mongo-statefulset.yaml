@@ -45,7 +45,7 @@ spec:
               subPath: mongo
             - mountPath: /docker-entrypoint-initdb.d
               name: mongo-init-js
-            - mountPath: ~
+            - mountPath: /root
               name: mongorc-js
         - name: mongo-sidecar
           image: cvallance/mongo-k8s-sidecar
