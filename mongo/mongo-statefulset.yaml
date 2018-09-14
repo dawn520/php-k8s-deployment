@@ -63,20 +63,20 @@ spec:
       imagePullSecrets:
       - name: harborkey1
       volumes:
-      - configMap:
+      - name: mongo-init-js
+        configMap:
+          name: mongo-init-js
           defaultMode: 420
           items:
           - key: mongo-init.js
             path: mongo-init.js
+      - name: mongorc-js
+        configMap:
           name: mongo-init-js
-        name: mongo-init-js
-      - configMap:
           defaultMode: 420
           items:
           - key: mongorc.js
             path: mongorc.js
-          name: mongorc-js
-        name: mongo-init-js
   volumeClaimTemplates:
   - metadata:
       name: data
