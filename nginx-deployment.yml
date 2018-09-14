@@ -30,8 +30,8 @@ spec:
                   - name: harborkey1
             volumes:
                 - name: nginx-config
-                  persistentVolumeClaim:
-                    claimName: nginx-nfs-pvc
+                  configMap:
+                    name: php-worker
                 - name: web-root
                   persistentVolumeClaim:
                     claimName: code-nfs-pvc
