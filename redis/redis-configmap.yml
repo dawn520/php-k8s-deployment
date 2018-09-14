@@ -5,7 +5,7 @@ metadata:
   labels:
     app: redis
 data:
-  master.cnf: |
+  redis.conf: |
     appendonly yes
     appendfsync everysec
     aof-use-rdb-preamble yes
