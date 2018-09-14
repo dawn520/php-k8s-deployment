@@ -51,7 +51,7 @@ spec:
         volumeMounts:
           - name: "redis-conf"
             mountPath: "/etc/redis"
-          - name: "redis-data"
+          - name: "data"
             mountPath: "/var/lib/redis"
       volumes:
       - name: "redis-conf"
