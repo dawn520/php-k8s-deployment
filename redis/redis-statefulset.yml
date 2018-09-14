@@ -3,10 +3,10 @@ kind: StatefulSet
 metadata:
   name: redis
 spec:
-   selector:
-    matchLabels:
-      app: redis
-      appCluster: redis-cluster
+    selector:
+      matchLabels:
+        app: redis
+        appCluster: redis-cluster
   serviceName: redis
   replicas: 2
   template:
