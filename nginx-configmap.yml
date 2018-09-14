@@ -6,7 +6,7 @@ metadata:
     app: nginx
 data:
   webapi.conf: |
-server {
+    server {
     listen 80;
     server_name api.myyqd.com;
     root /var/www/webapi/public;
@@ -34,10 +34,10 @@ server {
         root /var/www/letsencrypt/;
         log_not_found off;
     }
-}
+    }
 
   toubiao.cnf: |
-server {
+    server {
     listen 80;
     server_name tb.test;
     root /var/www/toubiao/public;
@@ -65,4 +65,4 @@ server {
         root /var/www/letsencrypt/;
         log_not_found off;
     }
-}
+    }
