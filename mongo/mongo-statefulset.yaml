@@ -75,7 +75,7 @@ spec:
           items:
           - key: mongorc.js
             path: mongorc.js
-          name: mongorc.js
+          name: mongorc-js
         name: mongorc-js
   volumeClaimTemplates:
   - metadata:
