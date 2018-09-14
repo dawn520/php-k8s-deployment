@@ -76,7 +76,7 @@ spec:
           - key: mongorc.js
             path: mongorc.js
           name: mongorc-js
-        name: mongorc-js
+        name: mongo-init-js
   volumeClaimTemplates:
   - metadata:
       name: data
