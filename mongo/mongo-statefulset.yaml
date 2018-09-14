@@ -73,7 +73,7 @@ spec:
       - name: mongorc-js
         configMap:
           name: mongo-init-js
-          defaultMode: 0755
+          defaultMode: 0777
           items:
           - key: mongorc.js
             path: mongorc.js
