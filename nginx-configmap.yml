@@ -73,7 +73,7 @@ data:
     listen [::]:80 default_server ipv6only=on;
 
     server_name localhost;
-    root /var/www/public;
+    root /var/www;
     index index.php index.html index.htm;
 
     location / {
