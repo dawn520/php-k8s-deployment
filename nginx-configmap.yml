@@ -36,7 +36,7 @@ data:
     }
     }
 
-  toubiao.cnf: |
+  toubiao.conf: |
     server {
     listen 80;
     server_name tb.test;
