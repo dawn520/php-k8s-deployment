@@ -150,10 +150,10 @@ spec:
           mountPath: /etc/mysql/conf.d
         resources:
           requests:
-            cpu: 100m
+            cpu: 10m
             memory: 50Mi
           limits:
-            cpu: 10m
+            cpu: 100m
             memory: 100Mi  
       imagePullSecrets:
       - name: harborkey1
