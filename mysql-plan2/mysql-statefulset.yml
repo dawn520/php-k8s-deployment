@@ -79,6 +79,9 @@ spec:
           mountPath: /etc/mysql/conf.d
         resources:
           requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
             cpu: 500m
             memory: 1Gi
         livenessProbe:
@@ -148,7 +151,10 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 100Mi
+            memory: 50Mi
+          limits:
+            cpu: 10m
+            memory: 100Mi  
       imagePullSecrets:
       - name: harborkey1
       volumes:
