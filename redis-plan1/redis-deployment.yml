@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+spec:
+    selector:
+        matchLabels:
+            app: api
+            name: redis
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: api
+                name: redis
+        spec:
+            containers:
+                - name: redis
+                  image: harbor.yourdomain.com/service/redis:0.0.2
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 80
+                      - containerPort: 443
+                  volumeMounts:
+                      - name: redis-config
+                        mountPath: /usr/local/etc/redis
+            imagePullSecrets:
+                  - name: harborkey1
+            volumes:
+                - name: redis-config
+                  configMap:
+                    name: nginx
