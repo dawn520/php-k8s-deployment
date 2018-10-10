@@ -9,6 +9,5 @@ data:
     appendonly yes
     appendfsync everysec
     aof-use-rdb-preamble yes
-    dir /var/lib/redis
     port 6379
     requirepass test
