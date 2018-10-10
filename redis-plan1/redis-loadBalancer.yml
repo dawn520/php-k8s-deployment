@@ -5,8 +5,8 @@ metadata:
 spec:
     type: LoadBalancer
     selector:
-        app: mongo
-        environment: product
+      app: api
+      name: redis
     ports:
         - name: http-6379
           protocol: TCP
