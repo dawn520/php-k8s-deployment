@@ -11,4 +11,4 @@ data:
     aof-use-rdb-preamble yes
     dir /var/lib/redis
     port 6379
-    requirepass Conran2017
+    requirepass test

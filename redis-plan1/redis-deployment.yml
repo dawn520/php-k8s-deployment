@@ -19,14 +19,18 @@ spec:
                   image: harbor.yourdomain.com/service/redis:0.0.2
                   imagePullPolicy: Always
                   ports:
-                      - containerPort: 80
-                      - containerPort: 443
+                      - containerPort: 27017
                   volumeMounts:
                       - name: redis-config
                         mountPath: /usr/local/etc/redis
+                        - name: redis-data
+                        mountPath: /data
             imagePullSecrets:
                   - name: harborkey1
             volumes:
                 - name: redis-config
                   configMap:
                     name: redis
+                 - name: redis-data
+                  persistentVolumeClaim:
+                    claimName: data-redis    
