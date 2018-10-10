@@ -14,3 +14,4 @@ data:
     cluster-node-timeout 5000
     dir /var/lib/redis
     port 6379
+    requirepass Conran2017
