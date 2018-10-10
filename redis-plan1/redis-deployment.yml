@@ -29,4 +29,4 @@ spec:
             volumes:
                 - name: redis-config
                   configMap:
-                    name: nginx
+                    name: redis
