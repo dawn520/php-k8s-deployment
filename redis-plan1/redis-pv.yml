@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: redis-data
+  name: redis-pv
   labels:
     app: api
-    pv: redis-data
+    pv: redis-pv
 spec:
   capacity:
     storage: 1Gi
@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: data
+  name: data-redis
 spec:
   accessModes:
     - ReadWriteOnce
@@ -30,5 +30,5 @@ spec:
   selector:
     matchLabels:
       app: api
-      pv: redis-data
+      pv: redis-pv
 
